@@ -8,13 +8,13 @@ Biblioteca para o protocolo **MyTapp Fast Connect** sobre BLE. Dois módulos:
 | `:android` | `com.mytapp.fastconnect:mytapp_fast_connect-android` | Implementação BLE Android: `MyTappFastConnect`, `BleConnectionManager`, `BleTransport`, `BleConnectionState`, `BleDevice`, `AndroidLogger`. Depende do `core`. |
 
 - **Versão atual:** `0.1.0`
-- **minSdk:** 24 · **Distribuição:** GitHub Packages (repositório privado, requer token)
+- **minSdk:** 24 · **Distribuição:** GitHub Packages (pacote público, mas o consumo ainda exige um token)
 
 ---
 
 ## Como consumir a biblioteca (projeto cliente)
 
-O GitHub Packages é **privado**: quem consome precisa de um **Personal Access Token (PAT)** do GitHub com o escopo **`read:packages`** — essa é a "chave" de acesso.
+O pacote é **público**, então qualquer pessoa com conta no GitHub pode consumir — não é preciso pedir acesso. Porém, o GitHub Packages **não permite download anônimo de artefatos Maven**: mesmo público, cada consumidor precisa autenticar com um **Personal Access Token (PAT) próprio** do GitHub com o escopo **`read:packages`**. Cada um usa o seu token; ninguém compartilha o do mantenedor.
 
 ### 1. Guarde as credenciais fora do projeto
 
