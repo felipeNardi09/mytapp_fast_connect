@@ -33,7 +33,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven {
-            url = uri("https://maven.pkg.github.com/OWNER/REPO") // troque OWNER/REPO
+            url = uri("https://maven.pkg.github.com/felipeNardi09/mytapp_fast_connect")
             credentials {
                 username = providers.gradleProperty("gpr.user").orNull ?: System.getenv("GITHUB_ACTOR")
                 password = providers.gradleProperty("gpr.key").orNull ?: System.getenv("GITHUB_TOKEN")
@@ -81,7 +81,7 @@ val result = fc.client.sendConfig(params)
 export GITHUB_ACTOR=seu-usuario
 export GITHUB_TOKEN=ghp_tokenComEscopo_write_packages
 
-./gradlew publish -Pgithub.owner=OWNER -Pgithub.repo=REPO
+./gradlew publish -Pgithub.owner=felipeNardi09 -Pgithub.repo=mytapp_fast_connect
 ```
 
 Para subir só um módulo: `./gradlew :core:publish` ou `./gradlew :android:publish`.
