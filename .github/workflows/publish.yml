@@ -1,0 +1,34 @@
+name: Publish to GitHub Packages
+
+# Publica a biblioteca no GitHub Packages ao criar uma release (ou tag v*).
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write   # necessário para publicar no GitHub Packages
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Publish
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./gradlew publishAllPublicationsToGitHubPackagesRepository \
+            -Pgithub.owner=${{ github.repository_owner }} \
+            -Pgithub.repo=${{ github.event.repository.name }} \
+            --no-daemon

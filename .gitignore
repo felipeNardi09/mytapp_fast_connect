@@ -1,0 +1,10 @@
+.gradle/
+build/
+.kotlin/
+.idea/
+local.properties
+*.log
+.DS_Store
+
+# Nunca comite credenciais
+gradle-local.properties

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+      BLE permissions declared by the library so consumers don't have to re-declare them.
+
+      RUNTIME-REQUEST RESPONSIBILITY: this library has no Activity or UI. The HOST APP must
+      request the dangerous runtime permissions (BLUETOOTH_SCAN / BLUETOOTH_CONNECT on API 31+,
+      ACCESS_FINE_LOCATION on API 24-30) before scanning/connecting. See README.
+    -->
+
+    <!-- Android 12 (API 31)+ -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation"
+        tools:targetApi="s" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <!-- Android 11 (API 30) and below -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+    <!-- Required to receive BLE scan results on API 24-30 -->
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:maxSdkVersion="30" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
+</manifest>
