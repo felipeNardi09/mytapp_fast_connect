@@ -8,11 +8,47 @@ Biblioteca para o protocolo **MyTapp Fast Connect** sobre BLE. Dois módulos:
 | `:android` | `com.mytapp.fastconnect:mytapp_fast_connect-android` | Implementação BLE Android: `MyTappFastConnect`, `BleConnectionManager`, `BleTransport`, `BleConnectionState`, `BleDevice`, `AndroidLogger`. Depende do `core`. |
 
 - **Versão atual:** `0.1.0`
-- **minSdk:** 24 · **Distribuição:** GitHub Packages (pacote público, mas o consumo ainda exige um token)
+- **minSdk:** 24
+- **Distribuição:** duas opções —
+  - **JitPack** (recomendado p/ consumidores): público, **sem token**.
+  - **GitHub Packages**: público, mas o download de artefatos Maven **sempre exige um token** (limitação do GitHub).
 
 ---
 
-## Como consumir a biblioteca (projeto cliente)
+## Opção A — Consumir via JitPack (sem token, recomendado)
+
+O [JitPack](https://jitpack.io) compila a lib direto do repositório público e serve os artefatos **sem necessidade de token**. É o jeito mais simples para quem vai consumir.
+
+### 1. Declare o repositório (no `settings.gradle.kts` do projeto cliente)
+
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+```
+
+### 2. Adicione a dependência
+
+```kotlin
+dependencies {
+    // App Android (BLE):
+    implementation("com.github.felipeNardi09.mytapp_fast_connect:mytapp_fast_connect-android:0.1.0")
+
+    // OU apenas o protocolo (Kotlin/JVM puro, sem Android):
+    // implementation("com.github.felipeNardi09.mytapp_fast_connect:mytapp_fast_connect-core:0.1.0")
+}
+```
+
+> Pelo JitPack o `group` é `com.github.felipeNardi09.mytapp_fast_connect` (prefixo do JitPack + repo).
+> A primeira build de uma versão nova pode levar alguns minutos (o JitPack compila sob demanda).
+
+---
+
+## Opção B — Consumir via GitHub Packages (exige token)
 
 O pacote é **público**, então qualquer pessoa com conta no GitHub pode consumir — não é preciso pedir acesso. Porém, o GitHub Packages **não permite download anônimo de artefatos Maven**: mesmo público, cada consumidor precisa autenticar com um **Personal Access Token (PAT) próprio** do GitHub com o escopo **`read:packages`**. Cada um usa o seu token; ninguém compartilha o do mantenedor.
 
