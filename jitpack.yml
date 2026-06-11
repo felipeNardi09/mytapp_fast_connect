@@ -1,0 +1,8 @@
+# Configuração de build do JitPack (https://jitpack.io).
+# O projeto compila com JDK 17 (ver jvmTarget nos módulos).
+jdk:
+  - openjdk17
+
+# Publica os dois módulos no Maven local; o JitPack serve esses artefatos.
+install:
+  - ./gradlew :core:publishToMavenLocal :android:publishToMavenLocal -x test --no-daemon
