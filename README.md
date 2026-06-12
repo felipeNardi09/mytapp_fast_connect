@@ -298,30 +298,3 @@ fc.client.incomingMessages.collect { msg ->
 | `NotConnected` | não havia conexão BLE viva; nada foi enviado |
 | `InvalidPayload(field)` | um campo falhou na validação (nomeado em `field`); nada foi enviado |
 | `TransportError(reason)` | o transporte rejeitou a mensagem válida |
-
----
-
-## Como publicar uma nova versão (mantenedor)
-
-### Manual
-
-```bash
-# token com escopo write:packages
-export GITHUB_ACTOR=seu-usuario
-export GITHUB_TOKEN=ghp_tokenComEscopo_write_packages
-
-./gradlew publish -Pgithub.owner=felipeNardi09 -Pgithub.repo=mytapp_fast_connect
-```
-
-Para subir só um módulo: `./gradlew :core:publish` ou `./gradlew :android:publish`.
-
-### Automático (CI)
-
-O workflow `.github/workflows/publish.yml` publica sozinho quando você cria uma **Release**
-no GitHub (usa o `GITHUB_TOKEN` da Action, sem precisar de PAT). Basta criar a release/tag.
-
-### Versionamento
-
-A versão fica em `build.gradle.kts` (bloco `subprojects { version = "..." }`). Faça bump
-seguindo SemVer antes de publicar. O `Protocol.VERSION` (em `core`) é a versão do **protocolo
-de fio**, independente da versão Maven.
